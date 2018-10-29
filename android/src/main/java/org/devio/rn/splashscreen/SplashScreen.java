@@ -2,7 +2,11 @@ package org.devio.rn.splashscreen;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Handler;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import java.lang.ref.WeakReference;
 
@@ -24,6 +28,11 @@ public class SplashScreen {
     public static void show(final Activity activity, final int themeResId) {
         if (activity == null) return;
         mActivity = new WeakReference<Activity>(activity);
+        final ProgressBar[] mProgressBar = new ProgressBar[1];
+        final ProgressBar[] mProgressBarShow = new ProgressBar[1];
+        final int[] mProgressStatus = {0};
+        final Handler mHandler = new Handler();
+
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -32,8 +41,30 @@ public class SplashScreen {
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
 
+                    mProgressBar[0] = (ProgressBar) mSplashDialog.findViewById(R.id.progressbar);
+                    mProgressBarShow[0] = (ProgressBar) mSplashDialog.findViewById(R.id.progressbarshow);
+
+                    mSplashDialog.findViewById(R.id.progressbar);
+
                     if (!mSplashDialog.isShowing()) {
                         mSplashDialog.show();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mProgressBarShow[0].setVisibility(View.INVISIBLE);
+                                mProgressBar[0].setVisibility(View.VISIBLE);
+                                while (mProgressStatus[0] < 50){
+                                    mProgressStatus[0]++;
+                                    android.os.SystemClock.sleep(60);
+                                    mHandler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            mProgressBar[0].setProgress(mProgressStatus[0]);
+                                        }
+                                    });
+                                }
+                            }
+                        }).start();
                     }
                 }
             }
