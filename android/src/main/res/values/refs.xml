@@ -3,4 +3,6 @@
     <item type="layout" name="launch_screen">
         @layout/launch_screen
     </item>
+    <item type="id" name="progressbar" />
+    <item type="id" name="progressbarshow" />
 </resources>
