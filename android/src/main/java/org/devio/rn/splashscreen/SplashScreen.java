@@ -46,8 +46,8 @@ public class SplashScreen {
 
                     mSplashDialog.findViewById(R.id.progressbar);
 
-                    // if (!mSplashDialog.isShowing()) {
-                    //     mSplashDialog.show();
+                    if (!mSplashDialog.isShowing()) {
+                        mSplashDialog.show();
                     //     new Thread(new Runnable() {
                     //         @Override
                     //         public void run() {
@@ -64,8 +64,8 @@ public class SplashScreen {
                     //                 });
                     //             }
                     //         }
-                    //     }).start();
-                    // }
+                        }).start();
+                    }
                 }
             }
         });
