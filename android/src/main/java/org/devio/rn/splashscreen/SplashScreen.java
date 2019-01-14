@@ -64,7 +64,7 @@ public class SplashScreen {
                     //                 });
                     //             }
                     //         }
-                        }).start();
+                    //     }).start();
                     }
                 }
             }
