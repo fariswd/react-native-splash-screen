@@ -3,6 +3,16 @@
     <item type="layout" name="launch_screen">
         @layout/launch_screen
     </item>
+    <item type="id" name="splashbg" />
+    <item type="drawable" name="xbg1" />
+    <item type="drawable" name="xbg2" />
+    <item type="drawable" name="xbg3" />
+    <item type="drawable" name="xbg4" />
+    <item type="id" name="quotes" />
+    <item type="string" name="quote1" />
+    <item type="string" name="quote2" />
+    <item type="string" name="quote3" />
+    <item type="string" name="quote4" />
     <item type="id" name="progressbar" />
     <item type="id" name="progressbarshow" />
 </resources>

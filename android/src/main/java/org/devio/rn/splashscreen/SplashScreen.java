@@ -5,10 +5,21 @@ import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
+import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+import java.time.OffsetTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 
 /**
  * SplashScreen
@@ -41,6 +52,28 @@ public class SplashScreen {
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
 
+                    RelativeLayout layout = (RelativeLayout) mSplashDialog.findViewById(R.id.splashbg);
+                    TextView quote = (TextView) mSplashDialog.findViewById(R.id.quotes);
+                    layout.setBackgroundResource(R.drawable.xbg1);
+                    quote.setText(R.string.quote1);
+
+                    Date d = new Date();
+                    CharSequence s  = DateFormat.format("s", d.getTime());
+                    int nums = Integer.parseInt(s.toString());
+
+                    if(nums >= 0 && nums < 15) {
+                        layout.setBackgroundResource(R.drawable.xbg1);
+                        quote.setText(R.string.quote1);
+                    } else if (nums >= 15 && nums < 30) {
+                        layout.setBackgroundResource(R.drawable.xbg2);
+                        quote.setText(R.string.quote2);
+                    } else if (nums >= 30 && nums < 15) {
+                        layout.setBackgroundResource(R.drawable.xbg3);
+                        quote.setText(R.string.quote3);
+                    } else {
+                        layout.setBackgroundResource(R.drawable.xbg4);
+                        quote.setText(R.string.quote4);
+                    }
                     mProgressBar[0] = (ProgressBar) mSplashDialog.findViewById(R.id.progressbar);
                     mProgressBarShow[0] = (ProgressBar) mSplashDialog.findViewById(R.id.progressbarshow);
 
